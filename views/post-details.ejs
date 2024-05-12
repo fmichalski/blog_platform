@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%= post.title %>
+    </title>
+</head>
+
+<body>
+    <h1>
+        <%= post.title %>
+    </h1>
+    <p>
+        <%= post.content %>
+    </p>
+    <h2>Komentarze</h2>
+    <ul>
+        <% comments.forEach(comment=> { %>
+            <li>
+                <%= comment.comment %> - posted by User #<%= comment.user_id %>
+            </li>
+            <% }) %>
+    </ul>
+    <% if (comments.length===0) { %>
+        <p>No comments yet.</p>
+        <% } %>
+
+            <% if (userName && userName !=='Nieznajomy' ) { %>
+                <h3>Dodaj komentarz</h3>
+                <form action="/comments/<%= post.id %>" method="post">
+                    <textarea name="comment" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+                <% } %>
+
+                    <a href="/">Back to posts</Node.js></a>
+</body>
+
+</html>

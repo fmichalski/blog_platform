@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Platform</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the Blog Platform</h1>
+    </header>
+
+    <% if (userName && userName !=='Nieznajomy' ) { %>
+        <h1>Hello, <%= userName.name %>!</h1>
+        <a href="/logout">Logout</a>
+        <p><a href="/posts/new">Add New Post</a></p>
+        <% } else { %>
+            <form action="/login" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <a href="/register">Don't have an account? Register</a>
+            <% } %>
+
+                <h2>Posts</h2>
+                <ul>
+                    <% posts.forEach(post=> { %>
+                        <li><a href="/posts/<%= post.id %>">
+                                <%= post.title %>
+                            </a></li>
+                        <% if (userName && userName !=='Nieznajomy' ) { %>
+                            <a href="/posts/edit/<%= post.id %>">(Edit)</a>
+                            <% } %>
+                                <% }) %>
+                </ul>
+
+                <footer>
+                    <p>Thank you for visiting our blog!</p>
+                </footer>
+
+</body>
+
+</html>
